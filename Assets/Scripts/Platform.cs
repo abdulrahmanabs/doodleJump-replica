@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Callbacks;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -29,8 +25,5 @@ public class Platform : MonoBehaviour
 
         }
     }
-     private void OnBecameInvisible() {
-        Destroy(this);
-     }
 
 }

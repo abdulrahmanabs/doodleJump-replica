@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed;
     float horizontalMovement;
     Rigidbody2D rb;
-    
+
 
     #region Unity Methods
     void Start()
@@ -32,17 +32,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.relativeVelocity.y >= 0 && other.gameObject.CompareTag("Lose"))
+        if (!GameManager.Instance.isPlaying) return;
+
+        if (other.relativeVelocity.y >= 0)
         {
-            GameManager.Instance.Lose();
-        }
-        else if (other.gameObject.CompareTag("Win"))
-        {
-            print("WIN");
-            GameManager.Instance.Win();
-            horizontalMovement=0;
+            if (other.gameObject.CompareTag("Lose"))
+            { GameManager.Instance.Lose(); }
+            else if (other.gameObject.CompareTag("Win"))
+            {
+                print("WIN");
+                GameManager.Instance.Win();
+                horizontalMovement = 0;
+
+            }
 
         }
+
     }
 
     #endregion
